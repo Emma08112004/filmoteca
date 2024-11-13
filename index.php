@@ -59,3 +59,9 @@
     <a href="#about">À propos</a>
     <a href="#contact">Contact</a><br>
 </nav></footer>
+
+<?php
+require_once 'Router.php';
+$router = new Router();
+$router->route();
+?>
