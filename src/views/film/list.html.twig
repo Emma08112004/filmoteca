@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des films{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <h2 class="mb-4 text-center text-primary">
+            <i class="fas fa-list" aria-hidden="true"></i> Liste des films
+        </h2>
+
+        {% if films is empty %}
+            <div class="alert alert-warning text-center" role="alert">
+                Aucun film disponible pour le moment.
+            </div>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Année</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Réalisateur</th>
+                            <th scope="col">Synopsis</th>
+                            <th scope="col">Ajouté le</th>
+                            <th scope="col">Modifié le</th>
+                             <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for film in films %}
+                            <tr>
+                                <th scope="row">{{ film.id }}</th>
+                                <td>{{ film.title }}</td>
+                                <td>{{ film.year }}</td>
+                                <td>{{ film.type }}</td>
+                                <td>{{ film.director }}</td>
+                                <td class="text-truncate" style="max-width: 150px;">
+                                    {{ film.synopsis }}
+                                </td>
+                                <td>{{ film.createdAt.format('d/m/Y H:i') }}</td>
+                                <td>{{ film.updatedAt.format('d/m/Y H:i') }}</td>
+                                                                <td>
+                                    <!-- Add action links -->
+                                    <a href="/film/read?id={{ film.id }}" class="btn btn-info btn-sm" title="Voir les détails">
+                                        <i class="fas fa-eye"></i> Lire
+                                    </a>
+                                    <a href="/film/update?id={{ film.id }}" class="btn btn-warning btn-sm" title="Modifier">
+                                        <i class="fas fa-edit"></i> Modifier
+                                    </a>
+                                    <a href="/film/delete?id={{ film.id }}" class="btn btn-danger btn-sm" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">Supprimer
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

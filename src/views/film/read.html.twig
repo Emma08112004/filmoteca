@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film Détails{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <h2 class="mb-4 text-center text-primary">
+            <i class="fas fa-film" aria-hidden="true"></i> Détails du film
+        </h2>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ film.title }}</h3>
+                <p><strong>Réalisateur:</strong> {{ film.director }}</p>
+            </div>
+            <div class="card-body">
+                <p><strong>Année:</strong> {{ film.year }}</p>
+                <p><strong>Type:</strong> {{ film.type }}</p>
+                <p><strong>Synopsis:</strong> {{ film.synopsis }}</p>
+                <p><strong>Créé le:</strong> {{ film.createdAt.format('d/m/Y H:i') }}</p>
+                <p><strong>Modifié le:</strong> {{ film.updatedAt.format('d/m/Y H:i') }}</p>
+            </div>
+        </div>
+        
+        <a href="/film/list" class="btn btn-primary mt-3">Retour à la liste des films</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un film{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <h2 class="mb-4 text-center text-warning">
+            <i class="fas fa-edit" aria-hidden="true"></i> Modifier un film
+        </h2>
+
+        <form method="POST" action="/film/update?id={{ film.id }}" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="title" class="form-label">Titre du film</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ film.title }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="year" class="form-label">Année de sortie</label>
+                <input type="number" class="form-control" id="year" name="year" value="{{ film.year }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type du film</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="Action" {% if film.type == 'Action' %}selected{% endif %}>Action</option>
+                    <option value="Comédie" {% if film.type == 'Comédie' %}selected{% endif %}>Comédie</option>
+                    <option value="Drame" {% if film.type == 'Drame' %}selected{% endif %}>Drame</option>
+                    <option value="Romance" {% if film.type == 'Romance' %}selected{% endif %}>Romance</option>
+                    <option value="Science-Fiction" {% if film.type == 'Science-Fiction' %}selected{% endif %}>Science-Fiction</option>
+                    <option value="Horreur" {% if film.type == 'Horreur' %}selected{% endif %}>Horreur</option>
+                    <option value="Documentaire" {% if film.type == 'Documentaire' %}selected{% endif %}>Documentaire</option>
+                    <option value="Animation" {% if film.type == 'Animation' %}selected{% endif %}>Animation</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="director" class="form-label">Réalisateur</label>
+                <input type="text" class="form-control" id="director" name="director" value="{{ film.director }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="synopsis" class="form-label">Synopsis</label>
+                <textarea class="form-control" id="synopsis" name="synopsis" rows="3" required>{{ film.synopsis }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-warning">Mettre à jour</button>
+        </form>
+    </div>
+{% endblock %}
